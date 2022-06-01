@@ -17,33 +17,6 @@ import Grid from "@mui/material/Grid"
 
 const Home: NextPage = () => {
 	const store: MainContextData | null = React.useContext<MainContextData | null>(MainContext);
-	let total: React.MutableRefObject<number> = React.useRef<number>(1);
-
-	React.useEffect(() => {
-		if (store && !store.quotes && total.current === 1) {
-			store.setIsLoading(() => true);
-			total.current--;
-			axios.get('api/get_random_quote')
-				.then((result: AxiosResponse<ResponseData, any>) => {
-					if (result.statusText === 'OK') {
-						store.setQuotes(() => ({
-							pagination: {
-								currentPage: 0,
-								nextPage: 0,
-								totalPages: 0
-							},
-							quotes: [{
-								author: result.data.quote?.author + '',
-								_id: result.data.quote?._id + '',
-								text: result.data.quote?.text + '',
-								genre: result.data.quote?.genre + ''
-							}]
-						}));
-						store.setIsLoading(() => false);
-					}
-				})
-		}
-	}, [store])
 
 	const getAnotherPage = React.useCallback(async (page: number) => {
 		if (store) {
@@ -124,9 +97,6 @@ const Home: NextPage = () => {
 						>
 							{
 								Array(10).fill(1).map(() => <li style={{ marginBlock: '1rem' }} key={uuidv4()}>
-									{/* <Skeleton animation={'wave'} variant={'text'} />
-									<Skeleton animation={'wave'} variant={'text'} />
-									<Skeleton animation={'wave'} variant={'text'} /> */}
 									<Skeleton animation={'wave'} variant={'rectangular'} width={'100%'} height={100} />
 								</li>)
 

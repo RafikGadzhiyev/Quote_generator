@@ -8,6 +8,7 @@ export const GenerateButton: React.FC = () => {
     const store: MainContextData | null = React.useContext<MainContextData | null>(MainContext);
     let isLoad: React.MutableRefObject<boolean> = React.useRef<boolean>(false);
 
+
     const getRandomQuote: () => void = React.useCallback(async () => {
         if (store && !isLoad.current) {
             store.setSelectedAuthor((() => null));
@@ -31,6 +32,10 @@ export const GenerateButton: React.FC = () => {
             }))
         }
     }, [store])
+
+    React.useEffect(() => {
+        getRandomQuote();
+    }, []);
 
 
     return <NoneBorderButton

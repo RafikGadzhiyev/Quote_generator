@@ -112,9 +112,7 @@ const Home: NextPage = () => {
 					{
 						!store.selectedAuthor &&
 						<>
-							<Skeleton animation={'wave'} variant={'text'} />
-							<Skeleton animation={'wave'} variant={'text'} />
-							<Skeleton animation={'wave'} variant={'text'} />
+							<Skeleton animation={'wave'} variant={'rectangular'} width={'100%'} height={100} />
 						</>
 					}
 					{
@@ -126,10 +124,12 @@ const Home: NextPage = () => {
 						>
 							{
 								Array(10).fill(1).map(() => <li style={{ marginBlock: '1rem' }} key={uuidv4()}>
+									{/* <Skeleton animation={'wave'} variant={'text'} />
 									<Skeleton animation={'wave'} variant={'text'} />
-									<Skeleton animation={'wave'} variant={'text'} />
-									<Skeleton animation={'wave'} variant={'text'} />
+									<Skeleton animation={'wave'} variant={'text'} /> */}
+									<Skeleton animation={'wave'} variant={'rectangular'} width={'100%'} height={100} />
 								</li>)
+
 							}
 						</ul>
 					}
